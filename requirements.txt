@@ -1,0 +1,9 @@
+torch==2.0.1
+torchvision==0.15.2
+regex==2023.8.8
+ftfy==6.1.1
+tqdm==4.66.1
+huggingface_hub==0.17.2
+sentencepiece==0.1.99
+protobuf==3.20.3
+timm==0.9.7
