@@ -123,7 +123,7 @@ torchrun --nproc_per_node 4 -m training.main --epochs 50 --precision amp --worke
          --train-num-samples 3318333 --dataset-type webdataset --batch-size 360\
                    --train-data './cc3m_mix_020/{00000..00331}.tar'
 ```
-If you want to train a model using CC3M with different radio of generated images, please prepare the corresponding dataset according to [Data Preparation](https://github.com/Tianwei3989/CorruptingBiasByGenerativeAI#data-preparation) and change ``--train-data './cc3m_mix_020/{00000..00331}.tar'`` to the directory you set, e.g., ``cc3m_mix_040``, ``cc3m_mix_060``, ``cc3m_mix_080``, etc.
+If you want to train a model using CC3M with different radio of generated images, please prepare the corresponding dataset according to [Data Preparation](https://github.com/Tianwei3989/GenerativeAIBias2FutureModels?tab=readme-ov-file#data-preparation) and change ``--train-data './cc3m_mix_020/{00000..00331}.tar'`` to the directory you set, e.g., ``cc3m_mix_040``, ``cc3m_mix_060``, ``cc3m_mix_080``, etc.
 
 ## Bias evaluation
 
