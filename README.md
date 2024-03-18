@@ -76,6 +76,12 @@ The parameter `--mix_radio` decides the ratio of the generated images to mix wit
 Please set it to the number you want. 
 If you run the above code, the output would be a folder `./cc3m_mix_020/`, i.e., a CC3M dataset mixing with 20% of generated images.
 
+#### Our CC3M generated data
+Our generated images are released [here](https://huggingface.co/datasets/T3989/SD_Bias_CC3M).
+The images as well as the captions have already been compressed to tar file, literally, the ``cc3m_mix_100``.
+You can extract them to prepare your mixing CC3M dataset by the above codes.
+
+
 ### Evaluation datasets
 
 Please request the required dataset from their official website (links are attached to the dataset name).
