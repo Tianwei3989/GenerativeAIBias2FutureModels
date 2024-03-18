@@ -121,9 +121,13 @@ Please use the following command to train OpenCLIP with CC3M.
 ```
 torchrun --nproc_per_node 4 -m training.main --epochs 50 --precision amp --workers 4\
          --train-num-samples 3318333 --dataset-type webdataset --batch-size 360\
-                   --train-data './cc3m_mix_020/{00000..00331}.tar'
+                   --train-data './cc3m_mix_020/{00000..00331}.tar'\
+                           --name cc3m_mix_020
 ```
 If you want to train a model using CC3M with different radio of generated images, please prepare the corresponding dataset according to [Data Preparation](https://github.com/Tianwei3989/GenerativeAIBias2FutureModels?tab=readme-ov-file#data-preparation) and change ``--train-data './cc3m_mix_020/{00000..00331}.tar'`` to the directory you set, e.g., ``cc3m_mix_040``, ``cc3m_mix_060``, ``cc3m_mix_080``, etc.
+
+When setting ``--name cc3m_mix_020``, you can find the trained model from ``./logs/cc3m_mix_020/checkpoints/``.
+To save storage space, we recommend you only save the final model ``epoch_50.pt`` to ``./logs/cc3m_mix_020/``, which may also ease the following bias evaluations.
 
 ## Bias evaluation
 
@@ -131,7 +135,8 @@ If you want to train a model using CC3M with different radio of generated images
 Run ``./tools/image_retrieval.py`` to extract features from PHASE dataset by 
 ```
 python ./tools/image_retrieval.py --data_path <your data root path> --task PHASE\
-         --model RN50 --from_pretrain <model ratio code, or pre-trained model name>
+         --model RN50 --from_pretrain <model ratio code (e.g., 020), or pre-trained model name>\
+                  --model_path <the path to all trained models>
 ```
 The output features are saved in  ``data_path/Images/`` by default.
 
@@ -146,7 +151,8 @@ python ./bias_metrics/phase_evaluation.py --data_path <your data root path>\
 Run ``./tools/image_retrieval.py`` by 
 ```
 python ./tools/image_retrieval.py --data_path <your data root path> --task coco_bias\
-         --model RN50 --from_pretrain <model ratio code, or pre-trained model name>
+         --model RN50 --from_pretrain <model ratio code, or pre-trained model name>\
+                  --model_path <the path to all trained models>
 ```
 The output features are saved in  ``data_path/Images/`` by default.
 
@@ -161,7 +167,8 @@ python ./bias_metrics/COCO_bias_evaluation.py --data_path <your data root path>\
 Run ``./tools/extract_feature.py`` by 
 ```
 python ./tools/extract_feature.py --data_path <your data root path> --task FairFace\
-         --model RN50 --from_pretrain <model ratio code, or pre-trained model name>
+         --model RN50 --from_pretrain <model ratio code, or pre-trained model name>\
+                  --model_path <the path to all trained models>
 ```
 The output features are saved in  ``data_path/`` by default.
 
@@ -179,7 +186,7 @@ Run ``./bias_metrics/markedness_person_preference.py`` by
 python ./bias_metrics/markedness_person_preference.py --data_path <your data root path>\
          --model_path <your data root path, only when use manually trained models>\
                   --model RN50 --output_root <path to save outputs>\
-                            --from_pretrain <model ratio code, or pre-trained model name>
+                            --from_pretrain <model ratio code, or pre-trained model name>\
 ```
 We refered to the codes from [Markedness](https://github.com/wolferobert3/visual_semantic_markedness).
 
