@@ -186,7 +186,7 @@ Run ``./bias_metrics/markedness_person_preference.py`` by
 python ./bias_metrics/markedness_person_preference.py --data_path <your data root path>\
          --model_path <your data root path, only when use manually trained models>\
                   --model RN50 --output_root <path to save outputs>\
-                            --from_pretrain <model ratio code, or pre-trained model name>\
+                            --from_pretrain <model ratio code, or pre-trained model name>
 ```
 We refered to the codes from [Markedness](https://github.com/wolferobert3/visual_semantic_markedness).
 
