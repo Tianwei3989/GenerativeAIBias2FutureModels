@@ -127,7 +127,7 @@ print("R@1:",r1,"R@5:",r5,"R@10:",r10)
 print()
 
 # By attributes
-for k in bias_dict.keys:
+for k in bias_dict.keys():
     categories = bias_dict[k]
     for c in categories:
         if c == 'baby&child':
