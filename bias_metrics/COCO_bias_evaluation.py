@@ -101,12 +101,12 @@ for i in df_img_val.id.values:
     sample = df_caption[df_caption['image_id'] == i]
     if sample.shape[0] == 0:
         print(i)
-    df_bias = df_bias.append(sample)
+    df_bias = pd.concat([df_bias, sample])
 
 image_names = []
 for i in df_bias['image_id']:
     image_names.append('COCO_val2014_'+str(i).zfill(12)+'.jpg')
-df_bias[['image_name']] = image_names
+df_bias['image_name'] = image_names
 df_bias_ = df_bias.reset_index()
 
 # prepare labels
@@ -118,11 +118,11 @@ for i in range(len(label_raw)):
     labels += [i] * samples.shape[0]
 
 # evaluation
-img_pickle_path = os.path.join(args.data_root,'images/IR_img_feature_COCO_bias_'+args.pre_train+'_'+args.model_name+'.pkl')
+img_pickle_path = os.path.join(args.data_root,'images/IR_img_feature_coco_bias_'+args.pre_train+'_'+args.model_name+'.pkl')
 with open(img_pickle_path, 'rb') as handle:
     img_feature = pickle.load(handle)
     
-cap_pickle_path = os.path.join(args.data_root,'images/IR_txt_feature_COCO_bias_'+args.pre_train+'_'+args.model_name+'.pkl')
+cap_pickle_path = os.path.join(args.data_root,'images/IR_txt_feature_coco_bias_'+args.pre_train+'_'+args.model_name+'.pkl')
 with open(cap_pickle_path, 'rb') as handle:
     cap_feature = pickle.load(handle)
 
@@ -144,25 +144,8 @@ print()
 for k in bias_dict.keys():
     categories = bias_dict[k]
     for c in categories:
-        index_list = get_index_list(anns, k, c)
+        index_list = get_index_list(df_img_val, k, c)
         r1, r5, r10 = compute_attr_acc(similarity, index_list)
         print('Results on', c, 'in', k)
         print("R@1:",r1,"R@5:",r5,"R@10:",r10)
         print()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
