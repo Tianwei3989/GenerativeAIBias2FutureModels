@@ -128,8 +128,10 @@ If you want to train a model using CC3M with different radio of generated images
 
 When setting ``--name cc3m_mix_020``, you can find the trained model from ``./logs/cc3m_mix_020/checkpoints/``.
 
-To simplify the file indexing and save storage space, we recommend you only save the final model ``epoch_50.pt`` to ``./logs/cc3m_mix_020/``, which may also ease the following bias evaluations.
-A simple process could be running the command: ``mkdir -p ./models/cc3m_mix_020/ && mv ./logs/mix_cc3m_020/checkpoints/epoch_50.pt ./models/cc3m_mix_020/epoch_50.pt``.
+To simplify the file indexing and save storage space, we recommend you only save the final model ``epoch_50.pt`` to ``./models/cc3m_mix_020/``, which may also ease the bias evaluations.
+A simple way could be: 
+
+``mkdir -p ./models/cc3m_mix_020/ && mv ./logs/mix_cc3m_020/checkpoints/epoch_50.pt ./models/cc3m_mix_020/epoch_50.pt``
 
 ## Bias evaluation
 
