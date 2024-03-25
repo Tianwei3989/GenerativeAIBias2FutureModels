@@ -127,7 +127,9 @@ torchrun --nproc_per_node 4 -m training.main --epochs 50 --precision amp --worke
 If you want to train a model using CC3M with different radio of generated images, please prepare the corresponding dataset according to [Data Preparation](https://github.com/Tianwei3989/GenerativeAIBias2FutureModels?tab=readme-ov-file#data-preparation) and change ``--train-data './cc3m_mix_020/{00000..00331}.tar'`` to the directory you set, e.g., ``cc3m_mix_040``, ``cc3m_mix_060``, ``cc3m_mix_080``, etc.
 
 When setting ``--name cc3m_mix_020``, you can find the trained model from ``./logs/cc3m_mix_020/checkpoints/``.
-To save storage space, we recommend you only save the final model ``epoch_50.pt`` to ``./logs/cc3m_mix_020/``, which may also ease the following bias evaluations.
+
+To simplify the file indexing and save storage space, we recommend you only save the final model ``epoch_50.pt`` to ``./logs/cc3m_mix_020/``, which may also ease the following bias evaluations.
+A simple process could be running the command: ``mkdir -p ./models/cc3m_mix_020/ && mv ./logs/mix_cc3m_020/checkpoints/epoch_50.pt ./models/cc3m_mix_020/epoch_50.pt``.
 
 ## Bias evaluation
 
