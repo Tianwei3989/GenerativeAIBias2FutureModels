@@ -107,7 +107,7 @@ Please request the required dataset from their official website (links are attac
 
 [Dora Zhao et al.'s dataset](https://princetonvisualai.github.io/imagecaptioning-bias/)
 <details>
-  <summary>Dataset structure</summary>
+  <summary>Data structure</summary>
   
      (dataset root) / COCO_bias
     ├── images            
