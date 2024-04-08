@@ -87,84 +87,85 @@ You can extract them to prepare your mixing CC3M dataset by the above codes.
 
 Please request the required dataset from their official website (links are attached to the dataset name).
 
-[PHASE](https://github.com/noagarcia/phase)
-<details>
-  <summary>Data structure</summary>
-  
-     (dataset root) / PHASE
-    ├── images            
-    │   ├── val                # Valiadation set
-    │   │   ├── 489254         # Image files
-    │   │   ├── 948611      
-    │   │   └── ...       
-    │   └── ...          
-    └── phase_annotations     # PHASE annotations
-        ├── anns_imgs_gcc_val_majorities_regions_20221101.json      
-        ├── phase_gcc_val_all_20221101.json      
-        └── ...  
 
-</details>
+* [PHASE](https://github.com/noagarcia/phase)
+         <details>
+           <summary>Data structure</summary>
+           
+              (dataset root) / PHASE
+             ├── images            
+             │   ├── val                # Valiadation set
+             │   │   ├── 489254         # Image files
+             │   │   ├── 948611      
+             │   │   └── ...       
+             │   └── ...          
+             └── phase_annotations     # PHASE annotations
+                 ├── anns_imgs_gcc_val_majorities_regions_20221101.json      
+                 ├── phase_gcc_val_all_20221101.json      
+                 └── ...  
+         
+         </details>
 
-[Dora Zhao et al.'s dataset](https://princetonvisualai.github.io/imagecaptioning-bias/)
-<details>
-  <summary>Data structure</summary>
-  
-     (dataset root) / COCO_bias
-    ├── images            
-    │   ├── val                  # Valiadation set
-    │   │   ├── COCO_val2014_000000000785.jpg         # Image files
-    │   │   ├── COCO_val2014_000000000872.jpg      
-    │   │   └── ...       
-    │   └── ...          
-    └── annotations             # MSCOCO's annotations
-    │   ├── captions_val2014.json      
-    │   ├── instances_val2014.json      
-    │   └── ...  
-    ├── images_val2014.csv      # Dora Zhao et al.'s annotations
-    └── instances_2014all.csv   # Dora Zhao et al.'s annotations
+* [Dora Zhao et al.'s dataset](https://princetonvisualai.github.io/imagecaptioning-bias/)
+         <details>
+           <summary>Data structure</summary>
+           
+              (dataset root) / COCO_bias
+             ├── images            
+             │   ├── val                  # Valiadation set
+             │   │   ├── COCO_val2014_000000000785.jpg         # Image files
+             │   │   ├── COCO_val2014_000000000872.jpg      
+             │   │   └── ...       
+             │   └── ...          
+             └── annotations             # MSCOCO's annotations
+             │   ├── captions_val2014.json      
+             │   ├── instances_val2014.json      
+             │   └── ...  
+             ├── images_val2014.csv      # Dora Zhao et al.'s annotations
+             └── instances_2014all.csv   # Dora Zhao et al.'s annotations
+         
+         > If you retrieve images from the original COCO dataset, you can use the following scripts for constructing the required data for the COCO bias dataset.
+         >
+         > ```python
+         > import shutil
+         > import os
+         > import pandas as pd
+         >
+         > data_root = <your COCO bias files download path>
+         > image_root = <your COCO images download path>
+         > 
+         > df_img = pd.read_csv(os.path.join(data_root, 'images_val2014.csv'))
+         > df_img_val = df_img[df_img['split']=='val']
+         > 
+         > dst_img_path = os.path.join(data_root, 'images/val/')
+         > os.makedirs(dst_img_path, exist_ok=True)
+         > df_bias = pd.DataFrame()
+         > for i in df_img_val.id.values:
+         >     image_name = 'COCO_val2014_' + str(i).zfill(12) + '.jpg'
+         >     shutil.copyfile(os.path.join(image_root, image_name), os.path.join(dst_img_path, image_name))
+         > 
+         > ```
+         
+         </details>
 
-> If you retrieve images from the original COCO dataset, you can use the following scripts for constructing the required data for the COCO bias dataset.
->
-> ```python
-> import shutil
-> import os
-> import pandas as pd
->
-> data_root = <your COCO bias files download path>
-> image_root = <your COCO images download path>
-> 
-> df_img = pd.read_csv(os.path.join(data_root, 'images_val2014.csv'))
-> df_img_val = df_img[df_img['split']=='val']
-> 
-> dst_img_path = os.path.join(data_root, 'images/val/')
-> os.makedirs(dst_img_path, exist_ok=True)
-> df_bias = pd.DataFrame()
-> for i in df_img_val.id.values:
->     image_name = 'COCO_val2014_' + str(i).zfill(12) + '.jpg'
->     shutil.copyfile(os.path.join(image_root, image_name), os.path.join(dst_img_path, image_name))
-> 
-> ```
-
-</details>
-
-[FairFace](https://github.com/joojs/fairface) (We use the version of ``Padding=1.25``)
-<details>
-  <summary>Data structure</summary>
-  
-     (dataset root) / FairFace
-    ├── margin125            
-    │   ├── train
-    │   │   ├── 1.jpg         # Image files
-    │   │   ├── 2.jpg      
-    │   │   └── ...       
-    │   └── val
-    │       ├── 1.jpg         # Image files
-    │       ├── 2.jpg      
-    │       └── ...    
-    ├── label_train.csv           
-    └── label_val.csv  
-
-</details>
+* [FairFace](https://github.com/joojs/fairface) (We use the version of ``Padding=1.25``)
+         <details>
+           <summary>Data structure</summary>
+           
+              (dataset root) / FairFace
+             ├── margin125            
+             │   ├── train
+             │   │   ├── 1.jpg         # Image files
+             │   │   ├── 2.jpg      
+             │   │   └── ...       
+             │   └── val
+             │       ├── 1.jpg         # Image files
+             │       ├── 2.jpg      
+             │       └── ...    
+             ├── label_train.csv           
+             └── label_val.csv  
+         
+         </details>
 
 
 ## Train OpenCLIP from scratch
