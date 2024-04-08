@@ -32,7 +32,7 @@ pip install open_clip_torch[training]
 ```
 We referred to the codes from [OpenCLIP](https://github.com/mlfoundations/open_clip).
 
-## (Option) Data Preparation
+## Data Preparation
 ### CC3M
 Please download the CC3M captions from the [offical cite](https://ai.google.com/research/ConceptualCaptions/).
 
