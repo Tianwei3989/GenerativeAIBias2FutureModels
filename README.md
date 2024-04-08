@@ -234,7 +234,7 @@ Then, run ``./bias_metrics/markedness_self_similarity.py`` by
 python ./bias_metrics/markedness_self_similarity.py --data_path <your data root path>\
          --model RN50 --from_pretrain <model ratio code, or pre-trained model name>
 ```
-We refered to the codes from [Markedness](https://github.com/wolferobert3/visual_semantic_markedness).
+We referred to the codes from [Markedness](https://github.com/wolferobert3/visual_semantic_markedness).
 
 
 ### Person preference
@@ -245,8 +245,4 @@ python ./bias_metrics/markedness_person_preference.py --data_path <your data roo
                   --model RN50 --output_root <path to save outputs>\
                             --from_pretrain <model ratio code, or pre-trained model name>
 ```
-We refered to the codes from [Markedness](https://github.com/wolferobert3/visual_semantic_markedness).
-
-## Results
-
-Please find them [here](https://docs.google.com/spreadsheets/d/1rW8veKoOCI3f1C5baDFZmBhL03Re5N1vTvng7ZpbU3Q/edit?usp=sharing)
+We referred to the codes from [Markedness](https://github.com/wolferobert3/visual_semantic_markedness).
