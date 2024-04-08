@@ -1,4 +1,4 @@
-# Corrupting Bias By GenerativeAI
+# Generative AI's Bias to Future Models
 This project is about the study of Dataset Bias Corruption from GenerativeAI, results in the paper [**_Would Deep Generative Models Amplify Bias in Future Models?_**](https://drive.google.com/file/d/1HOWYVf84zc-smpWeGuCWDbZzG3T78Tw6/view?usp=sharing)
 
 <p align="center">
@@ -15,12 +15,13 @@ conda create -n sd_bias python=3.8.10
 conda activate sd_bias
 ```
 
+### Install img2dataset (Only for downloading CC3M)
 For extracting CC3M data, an additional package should be installed:
 ```
 pip install img2dataset
 ```
 
-### Stable Diffusion
+### Install Stable Diffusion (Only for image generation)
 ```
 pip install diffusers==0.10.2 transformers scipy ftfy accelerate
 ```
@@ -29,9 +30,9 @@ pip install diffusers==0.10.2 transformers scipy ftfy accelerate
 ```
 pip install open_clip_torch[training]
 ```
-We refered to the codes from [OpenCLIP](https://github.com/mlfoundations/open_clip).
+We referred to the codes from [OpenCLIP](https://github.com/mlfoundations/open_clip).
 
-## Data Preparation
+## (Option) Data Preparation
 ### CC3M
 Please download the CC3M captions from the [offical cite](https://ai.google.com/research/ConceptualCaptions/).
 
@@ -87,8 +88,41 @@ You can extract them to prepare your mixing CC3M dataset by the above codes.
 Please request the required dataset from their official website (links are attached to the dataset name).
 
 [PHASE](https://github.com/noagarcia/phase)
+<details>
+  <summary>Data structure</summary>
+  
+     (dataset root) / PHASE
+    ├── images            
+    │   ├── val                # Valiadation set
+    │   │   ├── 489254         # Image files
+    │   │   ├── 948611      
+    │   │   └── ...       
+    │   └── ...          
+    └── phase_annotations     # PHASE annotations
+        ├── anns_imgs_gcc_val_majorities_regions_20221101.json      
+        ├── phase_gcc_val_all_20221101.json      
+        └── ...  
 
-[COCO bias](https://princetonvisualai.github.io/imagecaptioning-bias/)
+</details>
+
+[Dora Zhao et al.'s dataset](https://princetonvisualai.github.io/imagecaptioning-bias/)
+<details>
+  <summary>Dataset structure</summary>
+  
+     (dataset root) / COCO_bias
+    ├── images            
+    │   ├── val                  # Valiadation set
+    │   │   ├── COCO_val2014_000000000785.jpg         # Image files
+    │   │   ├── COCO_val2014_000000000872.jpg      
+    │   │   └── ...       
+    │   └── ...          
+    └── annotations             # MSCOCO's annotations
+    │   ├── captions_val2014.json      
+    │   ├── instances_val2014.json      
+    │   └── ...  
+    ├── images_val2014.csv      # Dora Zhao et al.'s annotations
+    └── instances_2014all.csv   # Dora Zhao et al.'s annotations
+
 > If you retrieve images from the original COCO dataset, you can use the following scripts for constructing the required data for the COCO bias dataset.
 >
 > ```python
@@ -111,9 +145,26 @@ Please request the required dataset from their official website (links are attac
 > 
 > ```
 
-[FairFace](https://github.com/joojs/fairface) (We use the version of ``Padding=1.25``)
+</details>
 
-[GeoDE](https://geodiverse-data-collection.cs.princeton.edu/)
+[FairFace](https://github.com/joojs/fairface) (We use the version of ``Padding=1.25``)
+<details>
+  <summary>Data structure</summary>
+  
+     (dataset root) / FairFace
+    ├── margin125            
+    │   ├── train
+    │   │   ├── 1.jpg         # Image files
+    │   │   ├── 2.jpg      
+    │   │   └── ...       
+    │   └── val
+    │       ├── 1.jpg         # Image files
+    │       ├── 2.jpg      
+    │       └── ...    
+    ├── label_train.csv           
+    └── label_val.csv  
+
+</details>
 
 
 ## Train OpenCLIP from scratch
