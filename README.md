@@ -70,8 +70,8 @@ python txt2img_cc3m.py --from_file ./prompts_train.txt --outdir ./SD_images --se
 #### Compress to tar files
 Run `create_mix_gcc.py` by
 ```
-python create_mix_gcc.py --cc3m_path ./cc3m --sd_cc3m_path ./SD_images --outdir ./SD_images\
-     --seed 123 --mix_ratio 0.2 --outdir ./cc3m_mix_
+python create_mix_gcc.py --cc3m_path ./cc3m --sd_cc3m_path ./SD_images --seed 123 \
+     --mix_ratio 0.2 --outdir ./cc3m_mix_
 ```
 The parameter `--mix_radio` decides the ratio of the generated images to mix with the original CC3M.
 Please set it to the number you want. 
