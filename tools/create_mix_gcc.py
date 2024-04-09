@@ -9,9 +9,11 @@ import os
 
 parser = argparse.ArgumentParser()
 
+
 def chunk(it, size):
     it = iter(it)
     return iter(lambda: tuple(islice(it, size)), ())
+
 
 parser.add_argument(
     "--outdir",
@@ -62,10 +64,10 @@ pipe = StableDiffusionPipeline.from_pretrained(
 # read file by id if exist
 if not opt.from_file_id:
     file_name = opt.from_file
-    print('No file ID!')
+    print("No file ID!")
     print()
 else:
-    file_name = opt.from_file.split('.')[0] + '_' + opt.from_file_id + '.txt'
+    file_name = opt.from_file.split(".")[0] + "_" + opt.from_file_id + ".txt"
 
 print(f"reading prompts from {file_name}")
 with open(file_name, "r") as f:
@@ -77,24 +79,26 @@ for texts in tqdm(data, desc="data"):
     tids = []
     prompts = []
     for text_count_id in range(len(texts)):
-        t_name = texts[text_count_id].split('#')[0].zfill(8)
+        t_name = texts[text_count_id].split("#")[0].zfill(8)
         if int(t_name) < opt.start:
-            print('Skip', t_name, ': to reach the new start point:',opt.start)
+            print("Skip", t_name, ": to reach the new start point:", opt.start)
             continue
-        if os.path.isfile(os.path.join(opt.outdir+'_'+str(opt.seed), t_name+".png")):
-            print('File', t_name, 'exist, skip the generation.')
+        if os.path.isfile(
+            os.path.join(opt.outdir + "_" + str(opt.seed), t_name + ".png")
+        ):
+            print("File", t_name, "exist, skip the generation.")
             continue
         tids.append(t_name)
-        prompts.append('#'.join(texts[text_count_id].split('#')[1:]))
+        prompts.append("#".join(texts[text_count_id].split("#")[1:]))
         t_count = 0
-    
+
     if len(tids) == 0:
         continue
-    
+
     with autocast("cuda"):
         images = pipe(prompts)
 
     for i in range(len(prompts)):
         image = images[0][i]
-        image.save(os.path.join(opt.outdir+'_'+str(opt.seed), tids[i]+".png"))
+        image.save(os.path.join(opt.outdir + "_" + str(opt.seed), tids[i] + ".png"))
         print(tids[i], prompts[i])
