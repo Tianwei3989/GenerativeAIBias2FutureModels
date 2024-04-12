@@ -6,7 +6,7 @@ import io
 import argparse
 
 
-def random_seed(seed=42, rank=0):
+def random_seed(seed=42):
     np.random.seed(seed)
     # random.seed(seed)
 

@@ -3,7 +3,7 @@ import torch
 from diffusers import StableDiffusionPipeline
 from pytorch_lightning import seed_everything
 import argparse
-from tqdm import tqdm, trange
+from tqdm import tqdm
 from itertools import islice
 import os
 

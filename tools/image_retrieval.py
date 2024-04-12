@@ -8,7 +8,7 @@ import os
 import argparse
 import copy
 from itertools import islice
-from tqdm import tqdm, trange
+from tqdm import tqdm
 import pickle
 
 
@@ -122,7 +122,6 @@ out_txt_features = {}
 for i in tqdm(range(len(prompts))):
     text_sample = prompts[i]
     text = tokenizer(text_sample).to(device)
-    # text = tokenizer(prompts[:5])
 
     with torch.no_grad(), torch.cuda.amp.autocast():
         text_features = model.encode_text(text)
