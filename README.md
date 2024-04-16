@@ -15,6 +15,13 @@ conda create -n sd_bias python=3.8.10
 conda activate sd_bias
 ```
 
+For installing dependencies, please run
+```
+pip install -r requirements.txt
+```
+<!-- comment: it's unsafe to use pip and conda in the same environment. Do we really need conda for this project? There are three requirements file. Add explanation for them. -->
+
+
 ### Install img2dataset (Only for downloading CC3M)
 For extracting CC3M data, an additional package should be installed:
 ```
