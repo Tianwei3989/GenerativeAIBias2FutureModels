@@ -11,3 +11,4 @@ transformers==4.33.2
 timm==0.9.7
 fsspec==2023.9.1
 scipy==1.10.1
+numpy==1.24.4
