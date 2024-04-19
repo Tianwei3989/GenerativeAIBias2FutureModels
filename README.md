@@ -16,15 +16,6 @@ source sd_bias/bin/activate
 pip install -U pip
 ```
 
-<details>
-  <summary><i>If you are using Conda, you can use the following commands for preparing the environment.</i></summary>
-  
-   ```
-   conda create -n sd_bias python=3.8.10
-   conda activate sd_bias
-   ```
-</details>
-
 (we use ``python==3.8.10`` for our experiments.)
 
 ### Install img2dataset (Only for downloading CC3M)
