@@ -28,6 +28,7 @@ pip install diffusers==0.10.2 transformers scipy ftfy accelerate
 
 ### OpenCLIP
 ```
+pip install -r requirements.txt
 pip install open_clip_torch[training]
 ```
 We referred to the codes from [OpenCLIP](https://github.com/mlfoundations/open_clip).
