@@ -9,11 +9,23 @@ The goal of this repository is to back up all experiments code, as well as the t
 This repository mainly contains codes for three parts: image generation (Stable Diffusion), pre-training model (OpenCLIP), and evaluation (PHASE, COCO bias, self similarity (SS), person preference (PP), and GeoDE).
 
 ## Installation
-Basic setting
+### Basic setting 
 ```
-conda create -n sd_bias python=3.8.10
-conda activate sd_bias
+python3 -m venv sd_bias
+source sd_bias/bin/activate
+pip install -U pip
 ```
+
+<details>
+  <summary><i>If you are using Conda, you can use the following commands for preparing the environment.</i></summary>
+  
+   ```
+   conda create -n sd_bias python=3.8.10
+   conda activate sd_bias
+   ```
+</details>
+
+(we use ``python==3.8.10`` for our experiments.)
 
 ### Install img2dataset (Only for downloading CC3M)
 For extracting CC3M data, an additional package should be installed:
@@ -170,7 +182,7 @@ Please request the required dataset from their official website and place them i
 </details>
 
 
-## Train OpenCLIP from scratch
+## Training OpenCLIP from scratch
 Please use the following command to train OpenCLIP with CC3M.
 ```
 torchrun --nproc_per_node 4 -m training.main --epochs 50 --precision amp --workers 4\
