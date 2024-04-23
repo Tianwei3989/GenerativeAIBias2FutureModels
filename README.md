@@ -4,9 +4,8 @@ This project is about the study of Dataset Bias Corruption from GenerativeAI, re
 <p align="center">
          <img src="https://github.com/Tianwei3989/CorruptingBiasByGenerativeAI/blob/main/imgs/Introduction.png" width="80%">
 </p>
-
-The goal of this repository is to back up all experiments code, as well as the training and evaluation manner, to github for further usage. 
-This repository mainly contains codes for three parts: image generation (Stable Diffusion), pre-training model (OpenCLIP), and evaluation (PHASE, COCO bias, self similarity (SS), person preference (PP), and GeoDE).
+ 
+This repository mainly contains codes for three parts: image generation (Stable Diffusion), pre-training model (OpenCLIP), and evaluation (Image Retrieval in PHASE and Dora Zhao et al.'s dataset, self-similarity (SS), and person preference (PP)).
 
 ## Installation
 ### Basic setting 
