@@ -150,7 +150,7 @@ cap_feature_copy = torch.tensor(np.array(list(cap_feature.values()))).float()
 
 img_feature_copy /= img_feature_copy[1].norm(dim=-1, keepdim=True)
 cap_feature_copy /= cap_feature_copy.norm(dim=-1, keepdim=True)
-similarity = (100.0 * img_feature_copy @ cap_feature_copy.T).T
+similarity = (100.0 * img_feature_copy @ cap_feature_copy.T).T  # text2img
 
 # global
 r1, r5, r10 = compute_attr_acc(similarity, np.arange(similarity.shape[0]))
