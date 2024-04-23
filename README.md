@@ -59,8 +59,8 @@ import pandas as pd
 df = pd.read_csv("./Train_GCC-training.tsv", header=None, sep='\t').iloc[:,0].reset_index()
 df['prompt'] = df['index'].astype(str) + '#' + df.iloc[:,1]
 
-prompts = df_['prompt'].values
-np.savetxt(r"./prompts_train.txt", save_prompts, fmt='%s')
+prompts = df['prompt'].values
+np.savetxt(r"./prompts_train.txt", prompts, fmt='%s')
 
 ```
 
