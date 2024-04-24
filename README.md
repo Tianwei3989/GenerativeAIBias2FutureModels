@@ -76,7 +76,7 @@ Run `create_mix_gcc.py` by
 python create_mix_gcc.py --cc3m_path ./cc3m --sd_cc3m_path ./SD_images --seed 123 \
      --mix_ratio 0.2 --outdir ./cc3m_mix_
 ```
-The parameter `--mix_radio` decides the ratio of the generated images to mix with the original CC3M.
+The parameter `--mix_ratio` decides the ratio of the generated images to mix with the original CC3M.
 Please set it to the number you want. 
 If you run the above code, the output would be a folder `./cc3m_mix_020/`, i.e., a CC3M dataset mixing with 20% of generated images.
 
@@ -180,7 +180,7 @@ torchrun --nproc_per_node 4 -m training.main --epochs 50 --precision amp --worke
                    --train-data './cc3m_mix_020/{00000..00331}.tar'\
                            --name cc3m_mix_020
 ```
-If you want to train a model using CC3M with different radio of generated images, please prepare the corresponding dataset according to [Data Preparation](https://github.com/Tianwei3989/GenerativeAIBias2FutureModels?tab=readme-ov-file#data-preparation) and change ``--train-data './cc3m_mix_020/{00000..00331}.tar'`` to the directory you set, e.g., ``cc3m_mix_040``, ``cc3m_mix_060``, ``cc3m_mix_080``, etc.
+If you want to train a model using CC3M with different ratios of generated images, please prepare the corresponding dataset according to [Data Preparation](https://github.com/Tianwei3989/GenerativeAIBias2FutureModels?tab=readme-ov-file#data-preparation) and change ``--train-data './cc3m_mix_020/{00000..00331}.tar'`` to the directory you set, e.g., ``cc3m_mix_040``, ``cc3m_mix_060``, ``cc3m_mix_080``, etc.
 
 When setting ``--name cc3m_mix_020``, you can find the trained model from ``./logs/cc3m_mix_020/checkpoints/``.
 
