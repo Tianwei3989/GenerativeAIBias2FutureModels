@@ -39,6 +39,12 @@ genders = ["Female", "Male"]
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
+    "--seed", 
+    type=int, 
+    default=0, 
+    help="Default random seed.",
+)
+parser.add_argument(
     "--model",
     type=str,
     default="RN50",
@@ -56,6 +62,8 @@ parser.add_argument(
     help="Root path of the dataset",
 )
 args = parser.parse_args()
+
+np.random.seed(args.seed)
 
 if args.from_pretrain in ["openai", "cc12m", "laion400m_e32"]:
     task_name = args.from_pretrain
@@ -96,8 +104,9 @@ for gender in genders:
     means_.append(mean_)
     gender_mean_dict[gender] = mean_
 
+means_norm = (means_-np.mean(means_))/np.mean(means_)*100
 print(genders)
-print(means_)
+print(means_norm)
 
 intersection_df = pd.DataFrame(means_, index=genders, columns=["self_sim"])
 # intersection_df.to_csv(f'D:\\gender_self_sims.csv')
@@ -122,8 +131,9 @@ for race in races:
     means_.append(mean_)
     race_mean_dict[race] = mean_
 
+means_norm = (means_-np.mean(means_))/np.mean(means_)*100
 print(races)
-print(means_)
+print(means_norm)
 
 intersection_df = pd.DataFrame(means_, index=races, columns=["self_sim"])
 # intersection_df.to_csv(f'D:\\race_self_sims.csv')
@@ -149,8 +159,9 @@ for age in age_labels:
     means_.append(mean_)
     age_mean_dict[age] = mean_
 
+means_norm = (means_-np.mean(means_))/np.mean(means_)*100
 print(age_labels)
-print(means_)
+print(means_norm)
 
 intersection_df = pd.DataFrame(means_, index=age_labels, columns=["self_sim"])
 # intersection_df.to_csv(f'D:\\age_self_sims.csv')
